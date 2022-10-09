@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "https://raw.githubusercontent.com/Tomfin10/data_vis_2/main/school-shootings-data.csv"},
+  "transform": [
+    {
+      "aggregate": [{
+        "op": "sum",
+        "field": "casualties",
+        "as": "sum_casualties"
+      }],
+      "groupby": ["school_type"]
+    }
+  ],
+  "title": {
+    "text":"Total Casualties",
+    "font": "Aharoni",
+    "fontSize": 18
+  },
+  "mark": {"type": "arc", "innerRadius": 50},
+  "encoding": {
+    "theta": {"field": "sum_casualties", "type": "quantitative"},
+    "color": {"field": "school_type", "type": "nominal", "legend": null, "scale": {"range": ["grey","#bd1313"]}},
+    "tooltip": [
+      {"field": "school_type", "title": "Type"},
+      {"field": "sum_casualties", "title": "Casualties"}
+    ]
+  },
+  "config": {
+    "style": {
+      "cell": {
+      "stroke": "transparent"
+      }
+    }
+  }
+}

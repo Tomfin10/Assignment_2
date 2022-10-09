@@ -11,11 +11,15 @@
         "groupby": ["school_type"]
       }
     ],
-    "title": "Total Killed",
+    "title": {
+      "text":"Total Killed",
+      "font": "Aharoni",
+      "fontSize": 18
+    },
     "mark": {"type": "arc", "innerRadius": 50},
     "encoding": {
       "theta": {"field": "sum_killed", "type": "quantitative"},
-      "color": {"field": "school_type", "type": "nominal"},
+      "color": {"field": "school_type", "type": "nominal", "legend":null, "scale": {"range": ["grey","#bd1313"]}},
       "tooltip": [
         {"field": "school_type", "title": "Type"},
         {"field": "sum_killed", "title": "Killed"}

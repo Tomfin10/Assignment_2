@@ -2,34 +2,39 @@ body *{
     font-family: 'Open Sans', sans-serif;
   }
   
-  h1 {
-    font-weight: 900;
-  }
-  
-  body {
-    background-color: lightgray;
-  }
-  
-  .page {
-    width: 1000px;
-    background-color: white;
-    margin: auto;
-    padding: 50px;
-    padding-top: 35px;
-  }
+h1 {
+  font-weight: 900;
+}
 
-  .pure-g {
-    margin-bottom: 40px;
-  }
+body {
+  background-color: lightgray;
+}
 
-  .text-top-left {
-    padding-right: 20px;
-    text-align: justify;
-    text-justify: inter-word;
-  }
+.page {
+  width: 1000px;
+  background-color: white;
+  margin: auto;
+  padding: 50px;
+  padding-top: 35px;
+}
 
-  .text-top-right {
-    padding-left: 20px;
-    text-align: justify;
-    text-justify: inter-word;
-  }
+.pure-g {
+  margin-bottom: 40px;
+}
+
+.text-top-left {
+  padding-right: 20px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.text-top-right {
+  padding-left: 20px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.donuts_words {
+  text-align: justify;
+  text-justify: inter-word;
+}

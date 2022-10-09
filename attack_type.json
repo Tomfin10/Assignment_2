@@ -1,0 +1,55 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "height": 300,
+    "width": 480,
+    "data": {"url": "https://raw.githubusercontent.com/Tomfin10/data_vis_2/main/school-shootings-data.csv"},
+    
+    "layer": [{
+      "title":{
+          "text":  "Types of Attacks since 1999",
+          "font": "Aharoni",
+          "fontSize": 18
+        },
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "field": "shooting_type", 
+          "type": "nominal", 
+          "title": null,
+          "axis": {
+            "labelFontSize": 13
+          }
+          },
+        "x": {
+          "aggregate": "count", "field": "shooting_type",
+          "title": "Number of Attacks"
+        },
+        "color": {"field": "shooting_type","legend":null, "scale": {"range": ["#bd1313"]}},
+        "tooltip": [
+          {"field": "shooting_type", "title": "Type"},
+          {"aggregate": "count", "field": "shooting_type", "title": "Number of Incidents"}
+  
+        ]
+  
+      }
+    },
+    {
+      "transform": [{
+        "calculate": "'Targeted shootings: 186'", "as": "text_annotation_1"
+      }],
+      "mark": {
+        "type": "text",
+        "fontSize": 15,
+        "fontWeight": 100,
+        "font": "Calibri",
+        "align": "right",
+        "dx": 190,
+        "dy": 66
+      },
+      "encoding": {
+        "text": {"field": "text_annotation_1"},
+        "color": {"value": "white"}
+        }
+    }]
+  }
+  

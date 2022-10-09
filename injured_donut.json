@@ -11,11 +11,20 @@
         "groupby": ["school_type"]
       }
     ],
-    "title": "Total Injured",
+    "title": {
+      "text":"Total Injured",
+      "font": "Aharoni",
+      "fontSize": 18
+    },
     "mark": {"type": "arc", "innerRadius": 50},
     "encoding": {
       "theta": {"field": "sum_injured", "type": "quantitative"},
-      "color": {"field": "school_type", "type": "nominal", "legend": {"title": "School Type", "labelFontSize": 20, "titleFontSize": 20}},
+      "color": {
+        "field": "school_type", 
+        "type": "nominal", 
+        "legend": null, 
+        "scale": {"range": ["grey","#bd1313"]}
+      },
       "tooltip": [
         {"field": "school_type", "title": "Type"},
         {"field": "sum_injured", "title": "Injured"}
