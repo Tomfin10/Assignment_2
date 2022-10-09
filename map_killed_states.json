@@ -1,0 +1,298 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "https://raw.githubusercontent.com/Tomfin10/data_vis_2/main/school-shootings-data.csv"},
+
+    "params": [
+        {
+            "name": "year_above",
+            "value": 2002,
+            "bind": {
+              "input": "range",
+              "min": 1999,
+              "max": 2020,
+              "step": 1,
+              "name": "From Year: "
+            }
+        }],
+    "transform": [
+        {
+            "calculate": "year(datum.year)",
+            "as": "Year"
+        },
+        {"filter": "datum.Year >= year_above"}
+
+    ],
+    "vconcat": [
+    {
+      "width": 900,
+      "height": 450,
+      "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/Tomfin10/data_vis_2/main/states-10m.json",
+          "format": {
+            "type": "topojson",
+            "feature": "states"
+          }
+        },
+        "projection": {
+          "type": "albersUsa"
+        },
+        "mark": {
+          "type": "geoshape",
+          "fill": "lightgray",
+          "stroke": "grey"
+        },
+        "title": {
+          "text": "Victims of school shootings 1999-2022",
+          "fontSize": 30,
+          "font": "Aharoni"
+        }
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/Tomfin10/data_vis_2/main/ne_50m_graticules_10_full.json",
+          "format": {
+            "type": "topojson",
+            "feature": "ne_50m_graticules_10"
+          }
+        },
+        "projection": {
+          "type": "albersUsa"
+        },
+        "mark": {
+          "type": "geoshape",
+          "fillOpacity": 0,
+          "stroke": "#EEEEEE",
+          "size": 40
+        },
+        "title": {
+          "text": "Victims of school shootings 1997",
+          "fontSize": 50
+          }
+      },
+      {
+        "transform": [
+          {
+              "calculate": "year(datum.year)",
+              "as": "Year"
+          },
+          {"filter": "datum.Year >= year_above"}
+
+        ],
+        "data": {
+          "url": "https://raw.githubusercontent.com/Tomfin10/data_vis_2/main/school-shootings-data.csv"
+        },
+        "projection": {
+          "type": "albersUsa"
+        },
+        "mark": {"type":"circle", "point": true},
+        "encoding": {
+          "longitude": {
+            "field": "long",
+            "type": "quantitative"
+          },
+          "latitude": {
+            "field": "lat",
+            "type": "quantitative"
+          },
+          "size": {
+            "field": "casualties",
+            "type": "quantitative",
+            "title": "Number of Victims",
+            "legend":{
+                "orient": "none",
+                "legendX": 700,
+                "legendY": 250
+            }
+          },
+          "color": {
+            "value": "red"
+          },
+          "tooltip": [
+            {"field": "school_name", "title": "School Name"},
+            {"field": "state", "title": "State"},
+            {"field": "killed", "title": "Killed"},
+            {"field": "injured", "title": "Injured"},
+            {"field": "casualties", "title": "Total Casualties"}
+          ]
+        }
+      }
+    ]
+    },
+    {
+      "hconcat": [{
+      "width": 400,
+      "layer": [
+          {
+              "title":{
+                  "text": "Total People Killed each year in School Shootings",
+                  "fontSize": 18,
+                  "font": "Aharoni"
+              },
+              "mark": {
+                  "type": "line",
+                  "color": "slategrey",
+                  "point": true
+              },
+              "encoding": {
+              "x": {
+                  "timeUnit": "year",
+                  "field": "date",
+                  "type": "ordinal",
+                  "axis": {"title": "Year", "titleFontSize": 15}
+              },
+              "y": {
+                  "aggregate": "sum",
+                  "field": "killed",
+                  "type": "quantitative",
+                  "axis": {"title": "Killed", "titleFontSize": 15},
+                  "scale": {"domain": [0,35]}
+              },
+              
+              "tooltip": [
+                  {"field": "year", "title": "Year", "timeUnit": "year"},
+                  {"field": "killed", "title": "Killed", "aggregate": "sum"}
+                  ]
+              }
+          },
+          {
+              "transform": [
+                  {
+                      "aggregate": [{
+                      "op": "sum",
+                      "field": "killed",
+                      "as": "sum_killed"
+                      }],
+                      "groupby": ["year"]
+                    }
+              ],
+              "layer":[
+                  {
+                      "mark": "rule",
+                      "encoding": {
+                          "y": {
+                              "aggregate": "mean",
+                              "field": "sum_killed",
+                              "type": "quantitative"
+                          },
+                          "color": {"value": "firebrick"},
+                          "size": {"value": 3}
+                      }
+                      
+                  },
+                  {
+                      "mark": {
+                          "type": "text",
+                          "align": "center",
+                          "dy": -10,
+                          "text": "Average Deaths",
+                          "fontSize": 15,
+                          "color": "firebrick",
+                          "fontWeight": "bold"
+                      },
+                      "encoding": {
+                          "y": {
+                              "aggregate": "mean",
+                              "field": "sum_killed",
+                              "type": "quantitative"
+                          }
+                      }
+                  }
+              ]
+          },
+          {
+              "transform": [
+                  {
+                      "aggregate": [{
+                      "op": "sum",
+                      "field": "killed",
+                      "as": "sum_killed2"
+                      }],
+                      "groupby": ["year"]
+                  },
+                  {
+                      "filter": "datum.sum_killed2 > 20"
+                  }
+              ],
+              "mark": {
+                  "type": "text",
+                  "dy": 0,
+                  "dx": -15,
+                  "fontSize": 18,
+                  "fontWeight": "bold"
+              },
+              "encoding": {
+                  "text": {"field": "sum_killed2", "type": "quantitative"},
+                  "color": {"value": "black"},
+                  "x": {
+                      "timeUnit": "year",
+                      "field": "year",
+                      "type": "ordinal"
+                  },
+                  "y": {
+                      "field": "sum_killed2",
+                      "type": "quantitative"
+                  }
+              }
+            }
+      ]
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [{
+            "op": "sum",
+            "field": "casualties",
+            "as": "sum_casualties"
+          }],
+          "groupby": ["state"]
+        },
+        {
+          "filter": "datum.sum_casualties > 13"
+        }
+      ],
+      "width": 400,
+      "height": 200,
+      "encoding": {
+        "y": {"field": "state", "type": "nominal", "sort": "-x", "title": null},
+        "x": {"field": "sum_casualties", "type": "quantitative", "title": null}
+      },
+      "title":{
+        "text":  "The Most Dangerous states in America",
+        "subtitle": "states ranked by casualties",
+        "font": "Aharoni",
+        "fontSize": 18
+      },
+      "layer": [{
+        "mark": "bar",
+        "encoding": {
+          "color": {
+            "field": "sum_casualties",
+            "type": "quantitative",
+            "title": "Number of Casualties since 1999",
+            "scale": {"scheme": "reds"},
+            "legend": null
+          }
+        }
+      }, {
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "xOffset": -4,
+          "aria": false
+        },
+        "encoding": {
+          "text": {"field": "sum_casualties", "type": "quantitative"},
+          "color": {
+            "condition": {
+              "test": {"field": "sum_casualties", "gt": 10},
+              "value": "white"
+            },
+            "value": "black"
+          }
+        }
+      }]
+    }]
+    }]
+  }

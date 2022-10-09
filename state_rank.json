@@ -1,0 +1,57 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 400,
+    "height": 350,
+    "data": {"url": "https://raw.githubusercontent.com/Tomfin10/data_vis_2/main/school-shootings-data.csv"},
+    "transform": [
+      {
+        "aggregate": [{
+          "op": "sum",
+          "field": "casualties",
+          "as": "sum_casualties"
+        }],
+        "groupby": ["state"]
+      },
+      {
+        "filter": "datum.sum_casualties > 14"
+      }
+    ],
+    "encoding": {
+      "y": {"field": "state", "type": "nominal", "sort": "-x", "title": null},
+      "x": {"field": "sum_casualties", "type": "quantitative", "title": null}
+    },
+    "title":{
+      "text":  "The 10 Most Dangerous states in America",
+      "font": "Aharoni",
+      "fontSize": 30
+    },
+    "layer": [{
+      "mark": "bar",
+      "encoding": {
+        "color": {
+          "field": "sum_casualties",
+          "type": "quantitative",
+          "title": "Number of Casualties since 1999",
+          "scale": {"scheme": "reds"}
+        }
+      }
+    }, {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "xOffset": -4,
+        "aria": false
+      },
+      "encoding": {
+        "text": {"field": "sum_casualties", "type": "quantitative"},
+        "color": {
+          "condition": {
+            "test": {"field": "sum_casualties", "gt": 10},
+            "value": "white"
+          },
+          "value": "black"
+        }
+      }
+    }]
+  }
+  
