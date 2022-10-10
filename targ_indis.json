@@ -1,0 +1,112 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A simple bar chart with embedded data.",
+  "data": {"url": "https://raw.githubusercontent.com/Tomfin10/data_vis_2/main/school-shootings-data.csv"},
+  "spacing": 0,
+  "hconcat": [{
+    "width": 200,
+    "layer": [{
+      "transform": [
+          {
+              "aggregate": [{
+              "op": "sum",
+              "field": "killed",
+              "as": "sum_killed2"
+              }],
+              "groupby": ["shooting_type"]
+          },
+          {"filter": "datum.shooting_type == 'targeted' || datum.shooting_type == 'indiscriminate'"}
+      ],
+      "mark": "bar",
+      "title": {
+        "text": "People Killed",
+        "fontSize": 18,
+        "font": "Aharoni"
+      },
+      "encoding": {
+        "x": {
+          "field": "shooting_type", 
+          "type": "nominal", 
+          "axis": {
+            "labelAngle": 0, 
+            "title":null,
+            "labelFontSize": 13
+          }
+        },
+        "y": {
+          "field": "sum_killed2", 
+          "type": "quantitative", 
+          "scale": {"domain": [0,200]},
+          "axis": {
+            "title": "Number of People"
+          }
+        },
+        "color": {
+          "field": "shooting_type", 
+          "type": "nominal", 
+          "legend": null, 
+          "scale": {"range": ["#bd1313","grey"]}
+        },
+        "tooltip": [
+          {"field": "shooting_type", "title": "Type"},
+          {"field": "sum_killed2", "title": "Killed"}
+        ]
+      }
+    }]
+  },
+  {
+    "width": 200,
+    "layer": [{
+      "transform": [
+          {
+              "aggregate": [{
+              "op": "sum",
+              "field": "injured",
+              "as": "sum_injured2"
+              }],
+              "groupby": ["shooting_type"]
+          },
+          {"filter": "datum.shooting_type == 'targeted' || datum.shooting_type == 'indiscriminate'"}
+      ],
+      "mark": "bar",
+      "title": {
+        "text": "People Injured",
+        "dy": -4,
+        "fontSize": 18,
+        "font": "Aharoni"
+      },
+      "encoding": {
+        "x": {
+          "field": "shooting_type", 
+          "type": "nominal", 
+          "axis": {
+            "labelAngle": 0, 
+            "title":null,
+            "labelFontSize": 13
+          }
+        },
+        "y": {
+          "field": "sum_injured2", 
+          "type": "quantitative", 
+          "scale": {"domain": [0,200]}, 
+          "axis": {
+            "labels": false,
+            "title": null,
+            "ticks": false,
+            "domainOpacity": 0.1
+          }
+        },
+        "color": {
+          "field": "shooting_type", 
+          "type": "nominal", 
+          "legend": null, 
+          "scale": {"range": ["#bd1313","grey"]}
+        },
+        "tooltip": [
+          {"field": "shooting_type", "title": "Type"},
+          {"field": "sum_injured2", "title": "Injured"}
+        ]
+      }
+    }]
+  }]
+}
