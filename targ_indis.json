@@ -30,15 +30,17 @@
           "axis": {
             "labelAngle": 0, 
             "title":null,
-            "labelFontSize": 13
+            "labelFontSize": 13,
+            "titleFontSize": 15
           }
         },
         "y": {
           "field": "sum_killed2", 
           "type": "quantitative", 
-          "scale": {"domain": [0,200]},
+          "scale": {"domain": [0,300]},
           "axis": {
-            "title": "Number of People"
+            "title": "Number of People",
+            "titleFontSize": 15
           }
         },
         "color": {
@@ -88,7 +90,7 @@
         "y": {
           "field": "sum_injured2", 
           "type": "quantitative", 
-          "scale": {"domain": [0,200]}, 
+          "scale": {"domain": [0,300]}, 
           "axis": {
             "labels": false,
             "title": null,
@@ -105,6 +107,61 @@
         "tooltip": [
           {"field": "shooting_type", "title": "Type"},
           {"field": "sum_injured2", "title": "Injured"}
+        ]
+      }
+    }]
+  },
+  {
+    "width": 200,
+    "layer": [{
+      "transform": [
+          {
+              "aggregate": [{
+              "op": "sum",
+              "field": "casualties",
+              "as": "sum_casualties2"
+              }],
+              "groupby": ["shooting_type"]
+          },
+          {"filter": "datum.shooting_type == 'targeted' || datum.shooting_type == 'indiscriminate'"}
+      ],
+      "mark": "bar",
+      "title": {
+        "text": "Total Casualties",
+        "dy": -4,
+        "fontSize": 18,
+        "font": "Aharoni"
+      },
+      "encoding": {
+        "x": {
+          "field": "shooting_type", 
+          "type": "nominal", 
+          "axis": {
+            "labelAngle": 0, 
+            "title":null,
+            "labelFontSize": 13
+          }
+        },
+        "y": {
+          "field": "sum_casualties2", 
+          "type": "quantitative", 
+          "scale": {"domain": [0,300]}, 
+          "axis": {
+            "labels": false,
+            "title": null,
+            "ticks": false,
+            "domainOpacity": 0.1
+          }
+        },
+        "color": {
+          "field": "shooting_type", 
+          "type": "nominal", 
+          "legend": null, 
+          "scale": {"range": ["#bd1313","grey"]}
+        },
+        "tooltip": [
+          {"field": "shooting_type", "title": "Type"},
+          {"field": "sum_casualties2", "title": "Casualties"}
         ]
       }
     }]

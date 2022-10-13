@@ -1,21 +1,22 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {"url": "https://raw.githubusercontent.com/Tomfin10/data_vis_2/main/school-shootings-data.csv"},
-    "transform": [
-      {
-        "aggregate": [{
-          "op": "sum",
-          "field": "injured",
-          "as": "sum_injured"
-        }],
-        "groupby": ["school_type"]
-      }
-    ],
-    "title": {
-      "text":"Total Injured",
-      "font": "Aharoni",
-      "fontSize": 18
-    },
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "https://raw.githubusercontent.com/Tomfin10/data_vis_2/main/school-shootings-data.csv"},
+  "transform": [
+    {
+      "aggregate": [{
+        "op": "sum",
+        "field": "injured",
+        "as": "sum_injured"
+      }],
+      "groupby": ["school_type"]
+    }
+  ],
+  "title": {
+    "text":"Total Injured",
+    "font": "Aharoni",
+    "fontSize": 18
+  },
+  "layer": [{
     "mark": {"type": "arc", "innerRadius": 50},
     "encoding": {
       "theta": {"field": "sum_injured", "type": "quantitative"},
@@ -23,18 +24,38 @@
         "field": "school_type", 
         "type": "nominal", 
         "legend": null, 
-        "scale": {"range": ["grey","#bd1313"]}
+        "scale": {"range": ["#5b6065","#bd1313"]}
       },
       "tooltip": [
         {"field": "school_type", "title": "Type"},
         {"field": "sum_injured", "title": "Injured"}
       ]
-    },
-    "config": {
-      "style": {
-        "cell": {
-        "stroke": "transparent"
-        }
+    }
+  },
+  {
+    "transform": [
+      {
+        "calculate": "round(datum.sum_injured/373 * 100) + '%'",
+        "as": "PercentOfTotal"
+      }
+    ],
+    "mark": {"type": "text", "radius": 75, "fill":"white", "fontSize": 12, "fontWeight": 600},
+    "encoding": {
+      "theta": {"field": "sum_injured", "type": "quantitative", "stack": true},
+      "color": {"field": "school_type", "type": "nominal", "legend":null, "scale": {"range": ["grey","#bd1313"]}},
+      "text": {"field": "PercentOfTotal"},
+      "tooltip": [
+        {"field": "school_type", "title": "Type"},
+        {"field": "sum_injured", "title": "Injured"}
+      ]
+    }
+
+  }],
+  "config": {
+    "style": {
+      "cell": {
+      "stroke": "transparent"
       }
     }
+  }
 }

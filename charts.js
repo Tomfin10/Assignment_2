@@ -27,3 +27,8 @@ var targ_indis_vg = "targ_indis.json";
 vegaEmbed("#targ_indis", targ_indis_vg).then(function(result) {
 
 }).catch(console.error);
+
+var day_time_vg = "day_time.json";
+vegaEmbed("#day_time", day_time_vg).then(function(result) {
+
+}).catch(console.error);

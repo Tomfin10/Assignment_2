@@ -1,0 +1,65 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Punchcard Visualization like on Github. The day on y-axis uses a custom order from Monday to Sunday.  The sort property supports both full day names (e.g., 'Monday') and their three letter initials (e.g., 'mon') -- both of which are case insensitive.",
+    "title": {
+      "text": "Day and Time of Shootings",
+      "fontSize": 18,
+      "font": "Aharoni"
+    },
+    "width": 420,
+    "height": 250,
+    "data": {"url": "https://raw.githubusercontent.com/Tomfin10/Assignment_2/main/school-shootings-data.csv"},
+    "transform": [
+      {"filter": {
+        "field": "nearest_hour",
+        "oneOf": ["7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"]
+      }}
+    ],
+    "mark": "circle",
+    "encoding": {
+      "y": {
+        "field": "day_of_week",
+        "type": "nominal",
+        "sort": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "title": "Day of Week",
+        "axis": {
+          "labelFontSize": 13,
+          "titleFontSize": 15
+        }
+      },
+      "x": {
+        "field": "nearest_hour",
+        "type": "ordinal",
+        "sort": ["7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"],
+        "title": "Hour of the Day",
+        "axis": {
+            "titleFontSize": 15
+        }
+      },
+      "color": {
+        "field": "Incidents",
+        "scale":{"range": ["grey"]},
+        "legend": null
+      },
+      "size": {
+        "field": "incidents",
+        "type": "quantitative",
+        "aggregate": "sum",
+        "title": "Number of Incidents",
+        "scale": {
+          "type": "threshold",
+          "domain": [3, 6, 9, 12],
+          "range": [100, 250, 400, 850, 1050]
+        },
+        "legend": {
+          "symbolFillColor": "grey",
+          "symbolStrokeColor": "grey"
+        }
+      },
+      "tooltip":[
+        {"field": "day_of_week", "title": "day"},
+        {"field": "incidents", "aggregate": "sum", "title": "Incidents"}
+      ]
+    }
+  }
+  
