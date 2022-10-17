@@ -15,7 +15,7 @@
         "oneOf": ["7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"]
       }}
     ],
-    "mark": "circle",
+    "mark": "rect",
     "encoding": {
       "y": {
         "field": "day_of_week",
@@ -37,23 +37,19 @@
         }
       },
       "color": {
-        "field": "Incidents",
-        "scale":{"range": ["grey"]},
-        "legend": null
-      },
-      "size": {
         "field": "incidents",
         "type": "quantitative",
         "aggregate": "sum",
         "title": "Number of Incidents",
         "scale": {
-          "type": "threshold",
-          "domain": [3, 6, 9, 12],
-          "range": [100, 250, 400, 850, 1050]
+          "type": "point",
+          "scheme": "greys"
         },
         "legend": {
-          "symbolFillColor": "grey",
-          "symbolStrokeColor": "grey"
+          "type": "symbol",
+          "symbolSize": 400,
+          "labelFontSize": 15,
+          "titleFontSize": 15
         }
       },
       "tooltip":[
