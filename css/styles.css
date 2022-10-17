@@ -14,8 +14,26 @@ body {
   width: 1000px;
   background-color: white;
   margin: auto;
-  padding: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
   padding-top: 35px;
+  border-style: solid;
+}
+
+
+.headerpart {
+  font-family: 'Aharoni';
+  border-style: none none solid none;
+  border-color: grey;
+}
+
+.vis1 {
+  padding-top: 40px;
+}
+.text1 {
+  padding-bottom: 20px;
+  border-style: none none solid none;
+  border-color: grey;
 }
 
 .pure-g {
@@ -38,4 +56,18 @@ body {
   padding-left: 20px;
   text-align: justify;
   text-justify: inter-word;
+}
+
+.donuts {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.heat_heading {
+  margin-bottom: -5px;
+}
+
+.heat {
+  border-style: none none solid none;
+  border-color: grey;
 }

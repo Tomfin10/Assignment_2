@@ -24,7 +24,7 @@
         "field": "school_type", 
         "type": "nominal", 
         "legend": null, 
-        "scale": {"range": ["#5b6065","#bd1313"]}
+        "scale": {"range": ["#000080","#800000"]}
       },
       "tooltip": [
         {"field": "school_type", "title": "Type"},
@@ -42,7 +42,7 @@
     "mark": {"type": "text", "radius": 75, "fill":"white", "fontSize": 12, "fontWeight": 600},
     "encoding": {
       "theta": {"field": "sum_injured", "type": "quantitative", "stack": true},
-      "color": {"field": "school_type", "type": "nominal", "legend":null, "scale": {"range": ["grey","#bd1313"]}},
+      "color": {"field": "school_type", "type": "nominal", "legend":null, "scale": {"range": ["#2b2b2b","#bd1313"]}},
       "text": {"field": "PercentOfTotal"},
       "tooltip": [
         {"field": "school_type", "title": "Type"},
