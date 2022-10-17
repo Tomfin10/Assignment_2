@@ -53,7 +53,7 @@
         }
       },
       "tooltip":[
-        {"field": "day_of_week", "title": "day"},
+        {"field": "day_of_week", "title": "Day"},
         {"field": "incidents", "aggregate": "sum", "title": "Incidents"}
       ]
     }

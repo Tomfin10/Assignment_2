@@ -13,18 +13,14 @@
           null,
           "Alabama",
           "Alaska",
-          "American Samoa",
           "Arizona",
           "Arkansas",
           "California",
           "Colorado",
           "Connecticut",
           "Delaware",
-          "District Of Columbia",
-          "Federated States Of Micronesia",
           "Florida",
           "Georgia",
-          "Guam",
           "Hawaii",
           "Idaho",
           "Illinois",
@@ -33,8 +29,6 @@
           "Kansas",
           "Kentucky",
           "Louisiana",
-          "Maine",
-          "Marshall Islands",
           "Maryland",
           "Massachusetts",
           "Michigan",
@@ -50,26 +44,19 @@
           "New York",
           "North Carolina",
           "North Dakota",
-          "Northern Mariana Islands",
           "Ohio",
           "Oklahoma",
           "Oregon",
-          "Palau",
           "Pennsylvania",
-          "Puerto Rico",
           "Rhode Island",
           "South Carolina",
           "South Dakota",
           "Tennessee",
           "Texas",
           "Utah",
-          "Vermont",
-          "Virgin Islands",
           "Virginia",
           "Washington",
-          "West Virginia",
-          "Wisconsin",
-          "Wyoming"
+          "Wisconsin"
         ],
         "labels":[
           "Show All"
@@ -118,7 +105,8 @@
   {
     "transform": [{
       "calculate": "'Targeted shootings: 186'", "as": "text_annotation_1"
-    }
+    },
+    {"filter": "state_selection == null"}
     ],
     "mark": {
       "type": "text",
@@ -132,7 +120,8 @@
     "encoding": {
       "text": {
         "field": "text_annotation_1"
-        },
+        
+      },
       "color": {"value": "white"}
       }
   }]

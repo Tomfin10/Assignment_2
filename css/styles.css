@@ -1,7 +1,4 @@
-body *{
-    font-family: 'Open Sans', sans-serif;
-  }
-  
+
 h1 {
   font-weight: 900;
 }
@@ -20,9 +17,11 @@ body {
   border-style: solid;
 }
 
-
+.titleclass {
+  font-family: 'Merriweather', serif;
+}
 .headerpart {
-  font-family: 'Aharoni';
+  font-family: 'Merriweather', serif;;
   border-style: none none solid none;
   border-color: grey;
 }
@@ -58,16 +57,23 @@ body {
   text-justify: inter-word;
 }
 
+.donut_heading {
+  margin-bottom: -20px;
+  font-family: 'Merriweather', serif;
+}
+
 .donuts {
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .heat_heading {
-  margin-bottom: -5px;
+  margin-bottom: -2px;
+  font-family: 'Merriweather', serif;
 }
 
 .heat {
   border-style: none none solid none;
   border-color: grey;
+  padding-right: 40px;
 }

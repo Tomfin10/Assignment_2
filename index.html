@@ -15,6 +15,10 @@
     integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+
   <title>Victims of School Shootings</title>
 </head>
 
@@ -32,7 +36,7 @@
       <div class="pure-g">
         <div class="pure-u-1-1">
           <center>
-            <h1>Visualisations of School Shootings in the USA</h1>
+            <h1 class = "titleclass">Visualisations of School Shootings in the USA</h1>
             <p>A Visualisation by Thomas Finlay</p>
           </center>
         </div>
@@ -75,7 +79,7 @@
   <div class = "donuts">
     <!--donuts-->
 
-    <h2>Victims in <span style="color:#000080"> Private</span> and <span style="color:#800000"> Public</span> schools</h2>
+    <h2 class = "donut_heading">Victims in <span style="color:#000080"> Private</span> and <span style="color:#800000"> Public</span> schools</h2>
     <h5>Hover over charts for additional information</h5>
 
     <div class="pure-g">
@@ -88,7 +92,7 @@
       <div class="pure-u-1-4"  style="width: 22%;">
         <div id="casualties_donut"></div>
       </div>
-      <div class="pure-u-1-4"  style="width: 33%;">
+      <div class="pure-u-1-4"  style="width: 34%;">
         <div class="donuts_words">
           <p>
             90% of students in America attend <span style="color:#800000; font-weight: bold"> public</span> schools, however <span style="color:#800000; font-weight: bold"> public</span> schools make up 
@@ -122,10 +126,10 @@
     </div>
   </div>
   <!--start of shooter information-->
-    <!--different types of attacks bar chart-->
-  <h2>Different types of Attacks by Shooters</h2>
 
+  <!--different types of attacks bar chart-->
 
+  <h2 style="font-family: 'Merriweather', serif;">Different types of Attacks by Shooters</h2>
 
   <div class="pure-g">
     <div class="pure-u-2-3">
@@ -147,12 +151,15 @@
   </div>
 
   <!--targeted and indiscriminate-->
+  <h2 class = "closerlook" style="font-family: 'Merriweather', serif;">A Closer Look at Targeted and Indiscriminate Attacks</h2>
   <div class="pure-g">
     <div class="pure-u-1-3">
       <div class="text-top-left">
-        <p>Using all three columns without merging. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat
-        sed.</p>
+        <p>
+          While targeted shootings are the most common, a closer inspection reveals that they are not the most deadly. <span style = "font-weight: bold;">Nearly twice as many people
+          are killed in indiscriminate shootings compared to targeted</span> as illustrated to the right. Furthermore, <span style = "font-weight: bold;">Indiscriminate shootings are accountable for 284 casualties compared to 185
+        which are targeted</span>
+        </p>
       </div>
     </div>
     <div class="pure-u-2-3">
